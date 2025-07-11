@@ -33,7 +33,7 @@ class Renewal extends Model
         });
     }
 
-    public function renewable(): MorphTo
+    public function renewable(): MorphTo 
     {
         return $this->morphTo();
     }
