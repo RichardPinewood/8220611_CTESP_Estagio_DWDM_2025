@@ -18,7 +18,7 @@ class RenewalsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-arrow-path';
 
-    protected static ?string $navigationGroup = 'Management';
+    protected static ?string $navigationGroup = 'Services';
 
     public static function form(Form $form): Form
     {

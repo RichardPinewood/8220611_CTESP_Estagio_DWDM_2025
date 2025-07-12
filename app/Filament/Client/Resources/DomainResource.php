@@ -72,7 +72,7 @@ class DomainResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                    ->label('See details'),
+                    ->label('More Info'),
             ])
             ->defaultSort('expires_at', 'asc')
             ->modifyQueryUsing(fn (Builder $query) => $query->where('client_id', auth()->user()->id));
@@ -81,7 +81,7 @@ class DomainResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            
         ];
     }
 

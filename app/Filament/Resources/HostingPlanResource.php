@@ -18,7 +18,7 @@ class HostingPlanResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-cube';
     
-    protected static ?string $navigationGroup = 'Management';
+    protected static ?string $navigationGroup = 'Services';
     
     protected static ?int $navigationSort = 30;
 
@@ -77,9 +77,7 @@ class HostingPlanResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                // Add filters if needed
-            ])
+           
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

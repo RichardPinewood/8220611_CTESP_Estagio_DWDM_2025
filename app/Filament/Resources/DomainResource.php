@@ -94,9 +94,7 @@ class DomainResource extends Resource
                 Tables\Columns\TextColumn::make('payment_status')
                     ->badge(),
             ])
-            ->filters([
-                //
-            ])
+
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -110,7 +108,7 @@ class DomainResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            
         ];
     }
 

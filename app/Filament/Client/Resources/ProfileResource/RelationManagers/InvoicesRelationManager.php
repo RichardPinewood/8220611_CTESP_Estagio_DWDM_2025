@@ -1,40 +1,33 @@
 <?php
 
-namespace App\Filament\Client\Resources;
+namespace App\Filament\Client\Resources\ProfileResource\RelationManagers;
 
-use App\Filament\Client\Resources\InvoiceResource\Pages;
 use App\Models\Invoice;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Actions\Action;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
+use Filament\Tables\Filters\SelectFilter;
 
-class InvoiceResource extends Resource
+class InvoicesRelationManager extends RelationManager
 {
-    protected static ?string $model = Invoice::class;
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?string $modelLabel = 'Invoice';
-    protected static ?string $navigationLabel = 'Invoices';
-    protected static ?string $navigationGroup = 'Finance';
-    protected static ?int $navigationSort = 1;
+    protected static string $relationship = 'invoices';
+    protected static ?string $recordTitleAttribute = 'invoice_number';
+    protected static ?string $title = 'Invoices';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('client_id', Auth::user()->id))
             ->columns([
                 TextColumn::make('invoice_number')
                     ->label('Invoice #')
@@ -71,13 +64,14 @@ class InvoiceResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('status')
+                SelectFilter::make('status')
                     ->options([
                         'pending' => 'Pending',
                         'paid' => 'Paid',
                         'overdue' => 'Overdue',
                     ]),
             ])
+
             ->actions([
                 Action::make('download_invoice')
                     ->label('Download Invoice')
@@ -92,38 +86,12 @@ class InvoiceResource extends Resource
                     ->openUrlInNewTab()
                     ->visible(fn (Invoice $record) => $record->receipt_file),
             ])
-            ->bulkActions([
-                //
-            ])
+
             ->defaultSort('created_at', 'desc');
     }
 
-    public static function getRelations(): array
+    public function isReadOnly(): bool
     {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListInvoices::route('/'),
-        ];
-    }
-
-    public static function canCreate(): bool
-    {
-        return false;
-    }
-
-    public static function canEdit($record): bool
-    {
-        return false;
-    }
-
-    public static function canDelete($record): bool
-    {
-        return false;
+        return true;
     }
 }

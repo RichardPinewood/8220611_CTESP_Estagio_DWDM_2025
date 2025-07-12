@@ -74,7 +74,8 @@ class HostingResource extends Resource
                     ]),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->label('More Info'),
             ])
             ->defaultSort('expires_at', 'asc')
             ->modifyQueryUsing(fn (Builder $query) => $query->where('client_id', auth()->user()->id));
@@ -83,7 +84,7 @@ class HostingResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+        
         ];
     }
 

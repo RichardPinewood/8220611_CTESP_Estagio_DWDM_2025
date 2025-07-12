@@ -30,8 +30,8 @@ class SupportTicketResource extends Resource
     protected static ?string $model = SupportTicket::class;
     protected static ?string $navigationIcon = 'heroicon-o-ticket';
     protected static ?string $modelLabel = 'Support Ticket';
-    protected static ?string $navigationLabel = 'Support';
-    protected static ?string $navigationGroup = 'Support';
+    protected static ?string $navigationLabel = 'Status';
+    protected static ?string $navigationGroup = 'Support Management';
     protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form

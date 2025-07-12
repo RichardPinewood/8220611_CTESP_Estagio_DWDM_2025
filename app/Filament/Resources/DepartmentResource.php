@@ -79,7 +79,7 @@ class DepartmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            // Add relation managers here when needed
+           
         ];
     }
 

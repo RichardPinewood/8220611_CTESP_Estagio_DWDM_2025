@@ -17,3 +17,4 @@ class EditDomain extends EditRecord
         ];
     }
 }
+

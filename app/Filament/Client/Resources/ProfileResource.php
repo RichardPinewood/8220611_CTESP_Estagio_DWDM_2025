@@ -3,6 +3,7 @@
 namespace App\Filament\Client\Resources;
 
 use App\Filament\Client\Resources\ProfileResource\Pages;
+use App\Filament\Client\Resources\ProfileResource\RelationManagers;
 use App\Models\Client;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -91,8 +92,25 @@ class ProfileResource extends Resource
                             })
                             ->badge()
                             ->color('primary'),
+                        
+                        TextEntry::make('total_invoices')
+                            ->label('Total Invoices')
+                            ->state(function (Client $record): string {
+                                return (string) $record->invoices()->count();
+                            })
+                            ->badge()
+                            ->color('gray'),
+                        
+                        TextEntry::make('pending_invoices_amount')
+                            ->label('Pending Amount')
+                            ->state(function (Client $record): string {
+                                $amount = $record->invoices()->where('status', 'pending')->sum('amount');
+                                return '€' . number_format($amount, 2);
+                            })
+                            ->badge()
+                            ->color('warning'),
                     ])
-                    ->columns(2),
+                    ->columns(4),
 
                 Section::make('Personal Information')
                     ->schema([
@@ -174,7 +192,7 @@ class ProfileResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\InvoicesRelationManager::class,
         ];
     }
 

@@ -99,9 +99,7 @@ class HostingResource extends Resource
                 Tables\Columns\TextColumn::make('payment_status')
                     ->badge(),
             ])
-            ->filters([
-                //
-            ])
+            
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

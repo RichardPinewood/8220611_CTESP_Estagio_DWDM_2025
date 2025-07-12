@@ -30,6 +30,7 @@ class UserResource extends Resource
     
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationGroup = 'Organization';
 
     public static function getEloquentQuery(): Builder
     {

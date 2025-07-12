@@ -13,7 +13,7 @@ class ListHostings extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            // No create action for clients
+            
         ];
     }
 }

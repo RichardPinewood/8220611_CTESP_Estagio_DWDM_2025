@@ -17,8 +17,7 @@ class ServerResource extends Resource
     protected static ?string $model = Server::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-server';
-    
-    
+    protected static ?string $navigationGroup = 'Services';
     protected static ?int $navigationSort = 10;
     
     protected static ?string $modelLabel = 'Server';

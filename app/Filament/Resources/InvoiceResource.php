@@ -30,7 +30,7 @@ class InvoiceResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $modelLabel = 'Invoice';
     protected static ?string $navigationLabel = 'Invoices';
-    protected static ?string $navigationGroup = null;
+    protected static ?string $navigationGroup = 'Services';
     protected static ?int $navigationSort = 9;
 
     public static function form(Form $form): Form
@@ -171,7 +171,7 @@ class InvoiceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            
         ];
     }
 

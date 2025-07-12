@@ -101,9 +101,6 @@ class ClientResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                // Add filters here if needed
-            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
@@ -118,7 +115,7 @@ class ClientResource extends Resource
     public static function getRelations(): array
     {
         return [
-            // Add relation managers here when needed
+           
         ];
     }
 

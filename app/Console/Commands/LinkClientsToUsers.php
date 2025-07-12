@@ -34,6 +34,6 @@ class LinkClientsToUsers extends Command
             $this->line("Linked client: " . $client->name);
         }
         
-        $this->info('All clients have been linked to users!');
+        $this->info('clients have been linked to users');
     }
 }

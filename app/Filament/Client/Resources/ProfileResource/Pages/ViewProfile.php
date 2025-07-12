@@ -37,7 +37,7 @@ class ViewProfile extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            //
+            
         ];
     }
 }

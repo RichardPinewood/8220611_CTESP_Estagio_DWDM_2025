@@ -17,7 +17,7 @@ class RegistrarsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
     
-    protected static ?string $navigationGroup = 'Management';
+    protected static ?string $navigationGroup = 'Services';
     
     protected static ?int $navigationSort = 20;
     
@@ -69,9 +69,7 @@ class RegistrarsResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                // Add filters if needed
-            ])
+        
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

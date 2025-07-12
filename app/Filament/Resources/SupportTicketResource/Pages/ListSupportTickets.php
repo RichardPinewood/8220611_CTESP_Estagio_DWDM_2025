@@ -13,7 +13,7 @@ class ListSupportTickets extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            //
+            
         ];
     }
 }

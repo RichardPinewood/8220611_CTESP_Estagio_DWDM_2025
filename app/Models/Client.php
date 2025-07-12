@@ -129,4 +129,14 @@ class Client extends Authenticatable implements FilamentUser, \Illuminate\Contra
     {
         return $this->hasManyThrough(TimeEntry::class, SupportTicket::class, 'client_id', 'ticket_id');
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function unreadNotifications()
+    {
+        return $this->hasMany(Notification::class)->unread();
+    }
 }
