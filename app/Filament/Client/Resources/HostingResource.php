@@ -80,7 +80,8 @@ class HostingResource extends Resource
                     ->label('More Info'),
             ])
             ->defaultSort('expires_at', 'asc')
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('client_id', auth()->user()->id));
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('client_id', auth()->user()->id))
+            ->paginated(false);
     }
 
     public static function getRelations(): array

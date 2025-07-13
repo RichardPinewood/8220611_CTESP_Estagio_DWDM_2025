@@ -16,7 +16,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
-use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
 
 class SupportTicketResource extends Resource
@@ -158,9 +158,13 @@ class SupportTicketResource extends Resource
                     ]),
             ])
             ->actions([
+                DeleteAction::make()
+                    ->label('Remove')
+                    ->visible(fn (SupportTicket $record) => in_array($record->status, ['resolved', 'closed'])),
                 Tables\Actions\ViewAction::make(),
             ])
-            ->defaultSort('created_at', 'desc');
+            ->defaultSort('created_at', 'desc')
+            ->paginated(false);
     }
 
     public static function getPages(): array

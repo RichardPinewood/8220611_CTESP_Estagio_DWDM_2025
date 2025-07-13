@@ -34,4 +34,9 @@ class Notification extends Model
     {
         $this->update(['read_at' => now()]);
     }
+
+    public static function unreadCount()
+    {
+        return static::whereNull('read_at')->count();
+    }
 }

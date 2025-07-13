@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Add columns to users table
+       
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('status')->default(true);
             $table->string('type')->default('admin');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('granted_at')->nullable();
         });
 
-        // Add user_id to clients table
+       
         if (Schema::hasTable('clients')) {
             Schema::table('clients', function (Blueprint $table) {
                 if (!Schema::hasColumn('clients', 'user_id')) {
@@ -38,7 +38,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Remove user_id from clients table
+       
         if (Schema::hasTable('clients') && Schema::hasColumn('clients', 'user_id')) {
             Schema::table('clients', function (Blueprint $table) {
                 $table->dropForeign(['user_id']);
@@ -46,7 +46,7 @@ return new class extends Migration
             });
         }
 
-        // Remove columns from users table
+        
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn([
                 'status', 

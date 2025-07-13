@@ -18,7 +18,9 @@ class NotificationResource extends Resource
     
     protected static ?string $navigationLabel = 'Notifications';
     
-    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationGroup = 'Notifications';
+    
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

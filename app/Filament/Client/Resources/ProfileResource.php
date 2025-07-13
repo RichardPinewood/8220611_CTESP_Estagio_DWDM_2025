@@ -26,7 +26,7 @@ class ProfileResource extends Resource
 
     protected static ?string $modelLabel = 'Profile';
 
-    protected static ?int $navigationSort = -2;
+    protected static ?int $navigationSort = -10;
 
     public static function form(Form $form): Form
     {
@@ -141,20 +141,6 @@ class ProfileResource extends Resource
                             ->placeholder('Not provided'),
                     ])
                     ->columns(2),
-
-                \Filament\Infolists\Components\Grid::make(1)
-                    ->schema([
-                        \Filament\Infolists\Components\Actions::make([
-                            \Filament\Infolists\Components\Actions\Action::make('edit')
-                                ->label('Edit Profile')
-                                ->icon('heroicon-o-pencil-square')
-                                ->color('primary')
-                                ->button()
-                                ->extraAttributes(['class' => 'w-48'])
-                                ->url(fn (): string => ProfileResource::getUrl('edit'))
-                        ])
-                        ->alignment('end')
-                    ])
             ]);
     }
 

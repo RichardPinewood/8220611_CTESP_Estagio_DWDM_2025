@@ -15,7 +15,7 @@ class ClientOnly
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if user is authenticated and is a client (Client model)
+       
         if (!auth('client')->check() || !auth('client')->user() instanceof \App\Models\Client) {
             abort(403, 'Access denied. Client access only.');
         }

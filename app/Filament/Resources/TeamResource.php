@@ -15,7 +15,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\BulkActionGroup;
-use Illuminate\Database\Eloquent\Builder;
 
 class TeamResource extends Resource
 {

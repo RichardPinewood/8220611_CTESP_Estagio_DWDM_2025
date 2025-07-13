@@ -12,19 +12,25 @@ class DomainObserver
         $this->createNotification(
             $domain->client_id,
             'domain_created',
-            'Domain Registered',
-            'Your new domain ' . $domain->name . ' has been successfully registered.'
+            'Domain Created',
+            'Your domain "' . $domain->name . '" has been successfully created and is now active.'
         );
     }
 
     public function updated(Domain $domain): void
     {
         if ($domain->isDirty('status')) {
+            $type = match ($domain->status) {
+                'expired' => 'domain_expired',
+                'expiring' => 'domain_expiring',
+                default => 'general'
+            };
+            
             $this->createNotification(
                 $domain->client_id,
-                'domain_' . $domain->status,
+                $type,
                 'Domain Status Updated',
-                'The status of your domain ' . $domain->name . ' has been updated to ' . $domain->status . '.'
+                'Your domain "' . $domain->name . '" status has been changed to ' . $domain->status . '.'
             );
         }
 
@@ -33,7 +39,16 @@ class DomainObserver
                 $domain->client_id,
                 'domain_renewed',
                 'Domain Renewed',
-                'Your domain ' . $domain->name . ' has been successfully renewed until ' . $domain->expires_at->format('Y-m-d') . '.'
+                'Your domain "' . $domain->name . '" has been renewed until ' . $domain->expires_at->format('Y-m-d') . '.'
+            );
+        }
+
+        if ($domain->isDirty('payment_status')) {
+            $this->createNotification(
+                $domain->client_id,
+                'general',
+                'Domain Payment Status Updated',
+                'Your domain "' . $domain->name . '" payment status has been changed to ' . $domain->payment_status . '.'
             );
         }
     }

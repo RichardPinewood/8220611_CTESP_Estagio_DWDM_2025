@@ -8,7 +8,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Support\Colors\Color;
 
 class DomainResource extends Resource
 {
@@ -77,7 +76,8 @@ class DomainResource extends Resource
                     ->label('More Info'),
             ])
             ->defaultSort('expires_at', 'asc')
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('client_id', auth()->user()->id));
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('client_id', auth()->user()->id))
+            ->paginated(false);
     }
 
     public static function getRelations(): array

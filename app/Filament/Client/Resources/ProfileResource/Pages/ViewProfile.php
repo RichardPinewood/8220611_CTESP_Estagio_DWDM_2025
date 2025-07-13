@@ -8,7 +8,6 @@ use Filament\Resources\Pages\ViewRecord;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\Password;
 
 class ViewProfile extends ViewRecord
 {
@@ -37,7 +36,12 @@ class ViewProfile extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            
+            Actions\Action::make('edit')
+                ->label('Edit Profile')
+                ->icon('heroicon-o-pencil-square')
+                ->color('primary')
+                ->url(fn (): string => ProfileResource::getUrl('edit')),
         ];
     }
+
 }

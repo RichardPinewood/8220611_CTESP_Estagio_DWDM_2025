@@ -16,26 +16,26 @@ class AdminOnly
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Allow access to login page for unauthenticated users
+        
         if (!auth()->check()) {
             return $next($request);
         }
 
-        // Check if user is not a User model instance
+        
         if (!auth()->user() instanceof \App\Models\User) {
             abort(403, 'Access denied. Admin access only.');
         }
 
         $user = auth()->user();
 
-        // Check if user has permission to access admin panel
+        
         if (!$user->canAccessAdminPanel()) {
-            // If user is a client without permission, redirect to client panel
+            
             if ($user->type === UserType::CLIENT) {
                 return redirect('/client/login')->with('error', 'You do not have permission to access the admin panel. Please contact an administrator if you need access.');
             }
             
-            // For other user types, show 403
+          
             abort(403, 'Access denied. You do not have permission to access the admin panel.');
         }
 

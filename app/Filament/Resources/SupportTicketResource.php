@@ -3,9 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SupportTicketResource\Pages;
-use App\Filament\Resources\SupportTicketResource\RelationManagers;
 use App\Models\SupportTicket;
-use App\Models\Client;
+
 use App\Models\Domain;
 use App\Models\Hosting;
 use Filament\Forms\Components\Select;
@@ -18,12 +17,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\Action;
-use Illuminate\Database\Eloquent\Builder;
+
 
 class SupportTicketResource extends Resource
 {
@@ -197,12 +194,6 @@ class SupportTicketResource extends Resource
                     ->preload(),
             ])
             ->actions([
-                Action::make('mark_in_progress')
-                    ->label('Start Work')
-                    ->icon('heroicon-o-play')
-                    ->color('warning')
-                    ->action(fn (SupportTicket $record) => $record->update(['status' => 'in_progress']))
-                    ->visible(fn (SupportTicket $record) => $record->status === 'open'),
                 Action::make('mark_resolved')
                     ->label('Resolve')
                     ->icon('heroicon-o-check-circle')

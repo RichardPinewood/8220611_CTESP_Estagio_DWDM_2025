@@ -2,8 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Models\Notification;
-
 use App\Http\Middleware\ClientOnly;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -36,6 +34,13 @@ class ClientPanelProvider extends PanelProvider
             ])
             ->brandName('Client Panel')
             ->discoverResources(in: app_path('Filament/Client/Resources'), for: 'App\\Filament\\Client\\Resources')
+            ->navigationGroups([
+                'Account',
+                'Notifications',
+                'Hosting',
+                'Domains',
+                'Support',
+            ])
             ->discoverPages(in: app_path('Filament/Client/Pages'), for: 'App\\Filament\\Client\\Pages')
             ->pages([
                 // No dashboard needed
@@ -48,11 +53,11 @@ class ClientPanelProvider extends PanelProvider
             ->userMenuItems([
                 \Filament\Navigation\MenuItem::make()
                     ->label('Profile')
-                    ->url('#') // You can replace this with your actual profile route
+                    ->url('#') 
                     ->icon('heroicon-o-user'),
                 \Filament\Navigation\MenuItem::make()
                     ->label('Settings')
-                    ->url('#') // You can replace this with your actual settings route
+                    ->url('#') 
                     ->icon('heroicon-o-cog-6-tooth'),
                 'logout' => \Filament\Navigation\MenuItem::make()
                     ->label('Log Out')
