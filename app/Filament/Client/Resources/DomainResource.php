@@ -19,6 +19,8 @@ class DomainResource extends Resource
     protected static ?string $navigationLabel = 'Domains';
 
     protected static ?string $pluralLabel = 'Current Domains';
+    
+    protected static ?int $navigationSort = 2;
 
     public static function table(Table $table): Table
     {
@@ -108,3 +110,4 @@ class DomainResource extends Resource
         return false;
     }
 }
+

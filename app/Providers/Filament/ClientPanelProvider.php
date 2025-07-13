@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\Notification;
+
 use App\Http\Middleware\ClientOnly;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -27,10 +29,10 @@ class ClientPanelProvider extends PanelProvider
             ->id('client')
             ->path('client')
             ->login()
-            ->registration() 
+            ->registration()
             ->emailVerification()
             ->colors([
-                'primary' => Color::Blue, 
+                'primary' => Color::Blue,
             ])
             ->brandName('Client Panel')
             ->discoverResources(in: app_path('Filament/Client/Resources'), for: 'App\\Filament\\Client\\Resources')
@@ -43,8 +45,20 @@ class ClientPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 \App\Filament\Client\Widgets\FinancialMovementsWidget::class,
             ])
-
-            
+            ->userMenuItems([
+                \Filament\Navigation\MenuItem::make()
+                    ->label('Profile')
+                    ->url('#') // You can replace this with your actual profile route
+                    ->icon('heroicon-o-user'),
+                \Filament\Navigation\MenuItem::make()
+                    ->label('Settings')
+                    ->url('#') // You can replace this with your actual settings route
+                    ->icon('heroicon-o-cog-6-tooth'),
+                'logout' => \Filament\Navigation\MenuItem::make()
+                    ->label('Log Out')
+                    ->url('#')
+                    ->icon('heroicon-o-arrow-left-on-rectangle'),
+            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -61,6 +75,6 @@ class ClientPanelProvider extends PanelProvider
                 ClientOnly::class,
             ])
             ->authGuard('client')
-            ->tenant(null); 
+            ->tenant(null);
     }
 }

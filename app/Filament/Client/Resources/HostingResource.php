@@ -18,6 +18,8 @@ class HostingResource extends Resource
     protected static ?string $navigationLabel = 'Hosting';
 
     protected static ?string $pluralLabel = 'Current Hostings';
+    
+    protected static ?int $navigationSort = 1;
 
     public static function table(Table $table): Table
     {

@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Domain;
+use App\Models\Hosting;
+use App\Models\Invoice;
+use App\Models\SupportTicket;
+use App\Observers\DomainObserver;
+use App\Observers\HostingObserver;
+use App\Observers\InvoiceObserver;
+use App\Observers\SupportTicketObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Invoice::observe(InvoiceObserver::class);
+        Hosting::observe(HostingObserver::class);
+        SupportTicket::observe(SupportTicketObserver::class);
+        Domain::observe(DomainObserver::class);
     }
 }
